@@ -20,7 +20,7 @@ class Task(models.Model):
 
 
     class Meta:
-        ordering =['-done','-created_time']
+        ordering =['done','-created_time']
 
     def __str__(self):
         return f"{self.content[:20]}{'...' if len(self.content) > 20 else ''}"
