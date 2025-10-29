@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% block title %}
+  <title>Homepage</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Todo list</h1>
+  {% for task in task_list %}
+    <h4>{{ task.content }}</h4>
+    <p>
+      {{ task.created_time }}
+      {{ task.content }}  {% if task.done %}Done{% else %}Not done{% endif %}
+    </p>
+
+  {% endfor %}
+{% endblock %}

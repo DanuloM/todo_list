@@ -1,0 +1,43 @@
+{% extends "core/base.html" %}
+{% block title %}
+  <title>Homepage</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Todo list <a class="btn btn-primary" style="float: right" href="{% url 'core:task-create' %}">Create</a></h1>
+  {% for task in task_list %}
+    <h5>{{ task.content }}
+      {% if task.done %}
+        <span class="badge badge-success">Done</span>
+      {% else %}
+        <span class="badge badge-danger">Not done</span>
+      {% endif %}
+      <form action="{% url 'core:toggle-complete' task.id %}" method="post" style="float:right;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm {% if task.done %}btn-secondary{% else %}btn-success{% endif %}">
+          {% if task.done %}Undo{% else %}Complete{% endif %}
+        </button>
+      </form>
+    </h5>
+    <p>
+      Created: {{ task.created_time }}
+    </p>
+    {% if not task.done %}
+      {% if task.deadline %}
+        <p>
+          Deadline: {{ task.deadline }}
+        </p>
+      {% endif %}
+    {% endif %}
+    {% if task.tags.all %}
+      <p>tags:
+        {% for tag in task.tags.all %}
+          {{ tag }}
+        {% endfor %}
+      </p>
+    {% endif %}
+    <a href="{% url 'core:task-update' task.pk %}">Update</a>
+    <a href="{% url 'core:task-delete' task.pk %}">Delete</a>
+    <hr>
+  {% endfor %}
+{% endblock %}
