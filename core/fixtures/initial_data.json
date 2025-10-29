@@ -1,0 +1,67 @@
+[
+  {
+    "model": "core.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Work"
+    }
+  },
+  {
+    "model": "core.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Personal"
+    }
+  },
+  {
+    "model": "core.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Urgent"
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 1,
+    "fields": {
+      "content": "Finish Django project",
+      "created_time": "2025-10-29T10:00:00Z",
+      "deadline": "2025-11-05",
+      "done": false,
+      "tags": [1, 3]
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 2,
+    "fields": {
+      "content": "Buy groceries",
+      "created_time": "2025-10-28T15:30:00Z",
+      "deadline": "2025-10-30",
+      "done": true,
+      "tags": [2]
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 3,
+    "fields": {
+      "content": "Read a book",
+      "created_time": "2025-10-27T09:20:00Z",
+      "deadline": null,
+      "done": false,
+      "tags": [2]
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 4,
+    "fields": {
+      "content": "Prepare presentation",
+      "created_time": "2025-10-26T13:45:00Z",
+      "deadline": "2025-11-01",
+      "done": true,
+      "tags": [1]
+    }
+  }
+]
