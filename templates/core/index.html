@@ -14,8 +14,15 @@
       {% endif %}
     </h5>
     <p>
-    Created: {{ task.created_time }}
+      Created: {{ task.created_time }}
     </p>
+    {% if not task.done %}
+      {% if task.deadline %}
+        <p>
+          Deadline: {{ task.deadline }}
+        </p>
+      {% endif %}
+    {% endif %}
     {% if task.tags.all %}
       <p>tags:
         {% for tag in task.tags.all %}
