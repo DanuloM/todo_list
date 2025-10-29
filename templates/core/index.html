@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Todo list</h1>
+  <h1>Todo list <a class="btn btn-primary" style="float: right" href="{% url 'core:task-create' %}">Create</a></h1>
   {% for task in task_list %}
     <h5>{{ task.content }}
       {% if task.done %}
@@ -29,7 +29,9 @@
           {{ tag }}
         {% endfor %}
       </p>
-      <hr>
     {% endif %}
+    <a href="{% url 'core:task-update' task.pk %}">Update</a>
+    <a href="{% url 'core:task-delete' task.pk %}">Delete</a>
+    <hr>
   {% endfor %}
 {% endblock %}
