@@ -5,4 +5,24 @@
 
 {% block content %}
   <h1>Todo list</h1>
+  {% for task in task_list %}
+    <h5>{{ task.content }}
+      {% if task.done %}
+        <span class="badge badge-success">Done</span>
+      {% else %}
+        <span class="badge badge-danger">Not done</span>
+      {% endif %}
+    </h5>
+    <p>
+    Created: {{ task.created_time }}
+    </p>
+    {% if task.tags.all %}
+      <p>tags:
+        {% for tag in task.tags.all %}
+          {{ tag }}
+        {% endfor %}
+      </p>
+      <hr>
+    {% endif %}
+  {% endfor %}
 {% endblock %}
