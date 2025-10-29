@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
 from core.models import Task, Tag
 
@@ -35,3 +35,9 @@ class TagCreateView(CreateView):
     fields = "__all__"
     success_url = reverse_lazy("core:tag-list")
     template_name = "core/tag_form.html"
+
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    success_url = reverse_lazy("core:tag-list")
+    template_name = "core/tag_confirm_delete.html"
