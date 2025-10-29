@@ -12,6 +12,12 @@
       {% else %}
         <span class="badge badge-danger">Not done</span>
       {% endif %}
+      <form action="{% url 'core:toggle-complete' task.id %}" method="post" style="float:right;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm {% if task.done %}btn-secondary{% else %}btn-success{% endif %}">
+          {% if task.done %}Undo{% else %}Complete{% endif %}
+        </button>
+      </form>
     </h5>
     <p>
       Created: {{ task.created_time }}

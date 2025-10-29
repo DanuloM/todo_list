@@ -1,6 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, View
 
 from core.models import Task, Tag
 
@@ -15,12 +16,10 @@ class TasksListView(ListView):
     queryset = Task.objects.prefetch_related("tags")
 
 
-
 class TagListView(ListView):
     model = Tag
     paginate_by = 5
     template_name = "core/tag_list.html"
-
 
 
 class TagUpdateView(UpdateView):
@@ -61,3 +60,11 @@ class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("core:index")
     template_name = "core/tag_confirm_delete.html"
+
+
+class ToggleComplete(View):
+    def post(self, request, pk, *args, **kwargs):
+        task = Task.objects.get(pk=pk)
+        task.done = not task.done
+        task.save()
+        return HttpResponseRedirect(reverse_lazy("core:index"))
