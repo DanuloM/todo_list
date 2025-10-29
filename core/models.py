@@ -18,5 +18,9 @@ class Task(models.Model):
     done = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, blank=True)
 
+
+    class Meta:
+        ordering =['-done','-created_time']
+
     def __str__(self):
         return f"{self.content[:20]}{'...' if len(self.content) > 20 else ''}"
