@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-  <h1>Tags List</h1>
+  <h1>Tags List <a class="btn btn-primary" style="float: right" href="{% url 'core:tag-create' %}">Create</a></h1>
   
   {% if tag_list %}
     <table class="table">
@@ -16,10 +16,10 @@
             {{ tag.name }}
           </td>
           <td>
-            <a href="#"></a>
+            <a class="btn btn-primary" href="{% url 'core:tag-update' tag.pk %}">Update</a>
           </td>
           <td>
-            <a href="#"></a>
+            <a class="btn btn-primary" href="#">Delete</a>
           </td>
         </tr>
       {% endfor %}
