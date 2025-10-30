@@ -59,7 +59,7 @@ class TaskCreateView(CreateView):
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("core:index")
-    template_name = "core/tag_confirm_delete.html"
+    template_name = "core/task_confirm_delete.html"
 
 
 class ToggleComplete(View):
